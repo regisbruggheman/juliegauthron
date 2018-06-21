@@ -1,0 +1,11 @@
+{{ if .IsTranslated -}}
+{{ range .Translations }}
+<li class="nav-item"><a class="nav-link" rel="alternate" href="{{ .RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}"><span>_&nbsp;</span>{{ .Site.Language.Params.LanguageName }}</a></li>
+{{ end -}}
+{{ else -}}
+{{ range .Site.Languages -}}
+{{ if ne $.Site.Language.Lang .Lang }}
+<li class="nav-item"><a class="nav-link" rel="alternate" href="/{{ .Lang }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}"><span>_&nbsp;</span>{{ .Params.LanguageName }}</a></li>
+{{ end -}}
+{{ end -}}
+{{ end -}}

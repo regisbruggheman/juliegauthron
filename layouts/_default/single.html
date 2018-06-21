@@ -1,0 +1,51 @@
+{{ define "title" }}
+  {{ .Title | markdownify }} | {{ .Site.Title }}
+{{ end }}
+{{ define "main" }}
+<article class="single-project">
+  <header class="single-project-header">
+    <div class="single-project-title">
+    <h1 class="single-project-name">
+      {{ if .Params.Name }}
+      <a href="{{ .Permalink }}">{{ .Params.Name | markdownify }}</a>
+      {{ end }}
+    </h1>
+    {{ if .Params.Subtitle }}
+      <p class="single-project-subtitle">
+        {{ .Params.Subtitle | markdownify }}
+      </p>
+    {{ end }}
+    </div>
+
+    {{ if .Params.image }}
+    <figure class="single-project-figure">
+      <img src="{{ (printf "/images/%s" .Params.image) | relURL }}" class="img-fluid" itemprop="image">
+    </figure>
+    {{ end }}
+
+    <div class="single-project-content">
+      <p>{{ .Content | markdownify }}</p>
+      {{ partial "sharing-icons.html" . }}
+    </div>
+  </header>
+  <div class="container-fluid single-project-images">
+  {{ range $index, $image :=  .Resources.Match "images/*.jpg" }}
+    {{ partial "responsive-picture.html" . }}
+  {{ end }}
+  </div>
+  <nav aria-label="nav-pagination ">
+    <ul class="pagination justify-content-center">
+    <li class="page-item">
+      {{ with .NextInSection }}
+        <a class="page-link" href="{{.Permalink}}">&larr; {{ i18n "paginatorPrevious" }}</a>
+      {{ end }}
+    </li>
+    <li class="page-item">
+      {{ with .PrevInSection }}
+        <a class="page-link" href="{{.Permalink}}">{{ i18n "paginatorNext" }} &rarr;</a>
+      {{ end }}
+    </li>
+  </ul>
+</nav>
+</article> <!-- /.single-project -->
+{{ end }}

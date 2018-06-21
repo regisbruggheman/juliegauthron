@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ .Site.LanguageCode | default "fr-FR" }}">
+    <head>
+
+        {{ block "site/meta" . }}{{ partial "site/meta.html" . }}{{ end }}
+
+        <title>
+          {{ block "title" . }}
+            {{- with .Title }}{{ . }} | {{ end }}{{ .Site.Title -}}
+          {{ end }}
+        </title>
+
+        {{ range .AlternativeOutputFormats }}
+            <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+        {{ end }}
+
+        {{ block "site/styles" . }}{{ partial "site/styles.html" . }}{{ end }}
+
+    </head>
+    <body id="page-top">
+
+        {{ partial "site/navbar.html" . }}
+
+        <div class="body-content">
+          <div class="container">
+            <div class="row">
+                {{ block "main" . }}
+                <!-- The part of the page that begins to differ between templates -->
+                {{ end }}
+            </div>
+          </div>
+        </main>
+
+        {{ partial "site/footer.html" . }}
+
+        {{ partial "site/scripts.html" . }}
+
+    </body>
+</html>

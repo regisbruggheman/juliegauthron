@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="container">
+  <div class="row">
+  {{ $paginator := .Paginate (where .Site.Pages "Section" "in" .Site.Params.mainSections) }}
+  {{ range $paginator.Pages }}
+    {{ .Render "list-item" }}
+  {{ end }}
+  </div>
+</div>
+{{ end }}

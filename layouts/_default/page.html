@@ -1,0 +1,21 @@
+{{ define "title" }}{{ .Title | markdownify }} | {{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<article class="container-fluid single-project">
+  <header class="single-project-header">
+    <div class="single-project-title">
+    <h1 class="single-project-name"><a href="{{ .Permalink }}">
+      {{ .Title | markdownify }}</a>
+    </h1>
+    </div>
+  {{ if .Params.image }}
+  <figure class="single-project-figure">
+  <img src="{{ (printf "/images/%s" .Params.image) | relURL }}" class="img-fluid" itemprop="image">
+  </figure>
+  {{ end }}
+  <div class="single-project-content">
+    <p>{{ .Content | markdownify }}</p>
+    {{ partial "sharing-icons.html" . }}
+  </div>
+  </header>
+</article> <!-- /.single-project -->
+{{ end }}

@@ -1,0 +1,92 @@
+baseurl = "/"
+languageCode = "fr-FR"
+title = "Esquisses de vie par l'artiste Julie Gauthron"
+
+enableRobotsTXT = true
+disableAliases = true
+
+# Pagination
+paginate = 20
+paginatePath = "page"
+
+[taxonomies]
+  tag = "étiquettes"
+  category = "catégories"
+
+# add redirects/headers
+[outputs]
+home = ["HTML", "RSS", "REDIRECTS", "HEADERS"]
+
+# remove .{ext} from text/netlify
+[mediaTypes."text/netlify"]
+suffix = ""
+delimiter = ""
+
+# add output format for netlify _redirects
+[outputFormats.REDIRECTS]
+mediatype = "text/netlify"
+baseName = "_redirects"
+isPlainText = true
+notAlternative = true
+
+# add output format for netlify _headers
+[outputFormats.HEADERS]
+mediatype = "text/netlify"
+baseName = "_headers"
+isPlainText = true
+notAlternative = true
+
+# Languages
+
+defaultContentLanguage = "fr"
+
+
+[menu]
+
+  [[menu.main]]
+    url = "/"
+    name = "Projets"
+    weight = 1
+
+  [[menu.main]]
+    url = "/about/"
+    name = "A propos"
+    weight = 2
+
+  [[menu.main]]
+    url = "https://www.facebook.com/exquiseesquisse72"
+    name = "Presse"
+    weight = 3
+
+
+# Links format
+
+[permalinks]
+  post = "/:title/"
+  page = "/:slug/"
+
+[params]
+  # Main sections (currently used for the recent posts in the sidebar)
+  mainSections = ["post"]
+
+  # Default author
+  author = "Regis Bruggheman"
+
+  # Date format (default: Jan 2, 2006)
+  # date_format = "Jan 2, 2006"
+
+  # Display post summaries instead of content in list templates (default: true)
+  truncate = true
+
+  # set robots.txt to disallow everything
+  disallow_search_engines = true
+
+  [params.sidebar]
+    # Weather to show the recent posts or not (default: true)
+    # showRecent = false
+
+    # Weather to show the taxonomies or not (default: true)
+    # showTaxonomy = false
+
+    # How many posts to show on the sidebar (Default: 5)
+    # num_recent_posts = 5
